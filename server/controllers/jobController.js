@@ -21,8 +21,16 @@ export const getJobs = asyncHandler(async (req, res) => {
   }
   if (location) query.location = new RegExp(location, 'i');
   if (skills) {
-    const skillArr = skills.split(',').map((s) => s.trim()).filter(Boolean);
-    if (skillArr.length) query.skillsRequired = { $in: skillArr };
+    const skillArr = skills
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean);
+
+    // Case-insensitive match on any of the provided skills
+    if (skillArr.length) {
+      const skillRegexes = skillArr.map((s) => new RegExp(`^${s}$`, 'i'));
+      query.skillsRequired = { $in: skillRegexes };
+    }
   }
 
   const skip = (Number(page) - 1) * Number(limit);
