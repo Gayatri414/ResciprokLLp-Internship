@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "description": "JobSphere - MERN Stack Job Portal",
   "private": true,
-  "scripts": {
-    "postinstall": "cd server && npm install && cd ../client && npm install",
-    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
-    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
-    "dev:server": "cd server && npm run dev",
-    "dev:client": "cd client && npm run dev",
-    "build": "cd client && npm run build",
-    "start": "cd server && npm start"
-  },
+ "scripts": {
+  "postinstall": "cd server && npm install && cd ../client && npm install",
+  "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+  "dev:server": "cd server && npm run dev",
+  "dev:client": "cd client && npm run dev",
+
+  "build": "cd client && npm run build",
+  "start": "node server/server.js"
+},
   "devDependencies": {
     "concurrently": "^9.0.1"
   }
